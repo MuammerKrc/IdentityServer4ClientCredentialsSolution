@@ -32,10 +32,16 @@ namespace Api2
                 opt =>
                 {
                     opt.Authority = "https://localhost:5000";
-                    opt.Audience = "resource_api1";
+                    opt.Audience = "resource_api2";
                 });
 
-            
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("Read", opt =>
+                {
+                    opt.RequireClaim("scope", "api2.read");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

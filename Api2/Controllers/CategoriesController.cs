@@ -4,25 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Api1.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Api1.Controllers
+namespace Api2.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
+        [Authorize(policy: "Read")]
         [HttpGet]
-        [Authorize]
-        public IActionResult GetProduct()
+        public IActionResult GetCategories()
         {
-            return Ok(new Product()
+            return Ok(new
             {
                 Id = 10,
-                Name = "Product name",
-                Price = 100,
-                Stock = 500
+                Name = "Computer",
             });
         }
     }
